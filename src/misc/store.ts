@@ -7,7 +7,7 @@ import {
 } from "mobx";
 
 import { getData as fetchData } from "./mock-api";
-import { Entity, SortDirection } from "./types";
+import { Entity, SortDirection, View } from "./types";
 import { getCategories, filterData } from "./utils";
 
 export class Store {
@@ -16,6 +16,7 @@ export class Store {
   categoryToDisplay: string | null = null;
   filterBy = "";
   sortDirection: SortDirection = SortDirection.Asc;
+  view: View = View.List;
 
   constructor() {
     makeObservable(this, {
@@ -24,6 +25,7 @@ export class Store {
       categoryToDisplay: observable,
       filterBy: observable,
       sortDirection: observable,
+      view: observable,
 
       categories: computed,
       filteredData: computed,
@@ -32,6 +34,7 @@ export class Store {
       onCategorySelection: action,
       setFilterBy: action,
       toggleSortDirection: action,
+      toggleView: action,
     });
   }
 
@@ -89,6 +92,12 @@ export class Store {
     const isAcd = this.sortDirection === SortDirection.Asc;
 
     this.sortDirection = SortDirection[isAcd ? "Desc" : "Asc"];
+  };
+
+  public toggleView = () => {
+    const isList = this.view === View.List;
+
+    this.view = View[isList ? "Gallery" : "List"];
   };
 }
 

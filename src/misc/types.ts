@@ -15,3 +15,8 @@ export enum SortDirection {
   Asc = 1,
   Desc = -1,
 }
+
+export enum View {
+  List = "flex",
+  Gallery = "grid",
+}
