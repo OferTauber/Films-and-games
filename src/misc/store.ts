@@ -7,25 +7,31 @@ import {
 } from "mobx";
 
 import { getData as fetchData } from "./mock-api";
-import type { Entity } from "./types";
-import { getCategories, filterDataByCategory } from "./utils";
+import { Entity, SortDirection } from "./types";
+import { getCategories, filterData } from "./utils";
 
 export class Store {
   isLoading = true;
   data: Entity[] = [];
   categoryToDisplay: string | null = null;
+  filterBy = "";
+  sortDirection: SortDirection = SortDirection.Asc;
 
   constructor() {
     makeObservable(this, {
       isLoading: observable,
       data: observable,
       categoryToDisplay: observable,
+      filterBy: observable,
+      sortDirection: observable,
 
       categories: computed,
       filteredData: computed,
 
       getData: action,
       onCategorySelection: action,
+      setFilterBy: action,
+      toggleSortDirection: action,
     });
   }
 
@@ -34,9 +40,21 @@ export class Store {
   }
 
   get filteredData(): Entity[] {
-    // TODO filter by string
+    const {
+      data,
+      categoryToDisplay: category,
+      filterBy: searchValue,
+      sortDirection,
+    } = this;
 
-    return filterDataByCategory(this.data, this.categoryToDisplay);
+    const filtered = filterData({ data, category, searchValue });
+    const sorted = filtered.sort((a, b) => {
+      const sort = a.Title.localeCompare(b.Title);
+
+      return sortDirection * sort;
+    });
+
+    return sorted;
   }
 
   private setIsLoading = (flag: boolean): void => {
@@ -59,11 +77,18 @@ export class Store {
   };
 
   public onCategorySelection = (category: string): void => {
-    console.log("clicked category - " + category);
-    console.log("Selected category - " + this.categoryToDisplay);
-
     if (this.categoryToDisplay === category) this.categoryToDisplay = null;
     else this.categoryToDisplay = category;
+  };
+
+  public setFilterBy = (str: string): void => {
+    this.filterBy = str;
+  };
+
+  public toggleSortDirection = () => {
+    const isAcd = this.sortDirection === SortDirection.Asc;
+
+    this.sortDirection = SortDirection[isAcd ? "Desc" : "Asc"];
   };
 }
 

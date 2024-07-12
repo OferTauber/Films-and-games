@@ -1,4 +1,4 @@
-import { Entity } from "./types";
+import type { Entity } from "./types";
 
 export const getCategories = (data: Entity[]): Record<string, number> => {
   const accumulator: Record<string, number> = {};
@@ -13,9 +13,22 @@ export const getCategories = (data: Entity[]): Record<string, number> => {
   }, accumulator);
 };
 
-export const filterDataByCategory = (
-  data: Entity[],
-  category: string | null
-): Entity[] => {
-  return category ? data.filter((entity) => entity.Type === category) : data;
+interface FilterDateProps {
+  data: Entity[];
+  category: string | null;
+  searchValue: string;
+}
+
+export const filterData = ({
+  data,
+  category,
+  searchValue,
+}: FilterDateProps): Entity[] => {
+  return data.filter(({ Title, Type, Year }) => {
+    if (category && Type !== category) return false;
+
+    if (searchValue)
+      return Title.includes(searchValue) || Year.includes(searchValue);
+    else return true;
+  });
 };
