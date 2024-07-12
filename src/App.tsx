@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { observer } from "mobx-react-lite";
+import { useStore } from "./misc/useStore";
+
+import { Loader } from "./ui-components/Loader";
+import LandingPage from "./pages/LandingPage";
+
+interface AppProps {
+  isLoading: boolean;
 }
 
-export default App;
+const App: React.FC<AppProps> = ({ isLoading }) => {
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  return <LandingPage />;
+};
+
+const Observed = observer(App);
+
+const StoreConnected = () => {
+  const { isLoading, getData } = useStore();
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  return <Observed {...{ isLoading }} />;
+};
+
+export default observer(StoreConnected);
