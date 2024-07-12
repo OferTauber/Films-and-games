@@ -12,7 +12,7 @@ interface CardsProps {
   data: Entity[];
 }
 
-const _Cards: React.FC<CardsProps> = ({ data }) => {
+const UnconnectedCards: React.FC<CardsProps> = ({ data }) => {
   const onTitleUpdate = (str: string) => console.log("TODO - develop " + str);
 
   return (
@@ -27,12 +27,12 @@ const _Cards: React.FC<CardsProps> = ({ data }) => {
   );
 };
 
-const Observed = observer(_Cards);
-
-export const Cards = () => {
+const StoreConnected = () => {
   const { filteredData } = useStore();
 
-  return <Observed {...{ data: filteredData }} />;
+  return <UnconnectedCards {...{ data: filteredData }} />;
 };
+
+export const Cards = observer(StoreConnected);
 
 export default Cards;

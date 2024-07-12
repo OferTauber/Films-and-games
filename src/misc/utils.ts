@@ -17,6 +17,5 @@ export const filterDataByCategory = (
   data: Entity[],
   category: string | null
 ): Entity[] => {
-  debugger;
   return category ? data.filter((entity) => entity.Type === category) : data;
 };

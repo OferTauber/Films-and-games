@@ -49,7 +49,7 @@ export class Store {
     try {
       const { data } = await fetchData();
 
-      this.data = data.results;
+      runInAction(() => (this.data = data.results));
     } catch (e) {
       // TODO better interface
       window.alert(e);
@@ -59,6 +59,9 @@ export class Store {
   };
 
   public onCategorySelection = (category: string): void => {
+    console.log("clicked category - " + category);
+    console.log("Selected category - " + this.categoryToDisplay);
+
     if (this.categoryToDisplay === category) this.categoryToDisplay = null;
     else this.categoryToDisplay = category;
   };

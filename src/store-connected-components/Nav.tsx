@@ -7,7 +7,7 @@ interface NavProps {
   categories: Record<string, number>;
   onSelection: (category: string) => void;
 }
-const _Nav: React.FC<NavProps> = ({ categories, onSelection }) => {
+const UnconnectedNav: React.FC<NavProps> = ({ categories, onSelection }) => {
   const keys = Object.keys(categories);
 
   return (
@@ -26,12 +26,14 @@ const _Nav: React.FC<NavProps> = ({ categories, onSelection }) => {
   );
 };
 
-const Observed = observer(_Nav);
-
-export const Nav = () => {
+export const StoreConnected = () => {
   const { categories, onCategorySelection } = useStore();
 
-  return <Observed {...{ categories, onSelection: onCategorySelection }} />;
+  return (
+    <UnconnectedNav {...{ categories, onSelection: onCategorySelection }} />
+  );
 };
+
+export const Nav = observer(StoreConnected);
 
 export default Nav;
