@@ -1,11 +1,12 @@
 import React from "react";
 
-import Nav from "../store-connected-components/Nav";
+import { Cards, Nav } from "../store-connected-components";
 
 export const LandingPage: React.FC = () => {
   return (
     <main style={{ display: "flex" }}>
       <Nav />
+      <Cards />
     </main>
   );
 };

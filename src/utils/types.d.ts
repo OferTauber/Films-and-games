@@ -1,14 +1,14 @@
 export type EntityType = "movie" | "series" | "game";
 
-export interface Film {
+export interface Entity {
   Title: string;
-  Year: `${number}`;
+  Year: string;
   imdbID: string;
   Type: EntityType;
   Poster: string;
 }
 
-export interface GetFilmsRes {
-  results: Film[];
-  totalResults: `${number}`;
+export interface GetDataRes {
+  results: Entity[];
+  totalResults: string;
 }

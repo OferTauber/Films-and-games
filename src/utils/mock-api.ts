@@ -1,9 +1,9 @@
 import { AxiosResponse } from "axios";
 import mockData from "./mock-data.json";
 
-import type { GetFilmsRes } from "./types";
+import type { GetDataRes } from "./types";
 
-export const getData = async (): Promise<AxiosResponse<GetFilmsRes>> => {
+export const getData = async (): Promise<AxiosResponse<GetDataRes>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const response: AxiosResponse = {

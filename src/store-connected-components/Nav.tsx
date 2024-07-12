@@ -9,7 +9,7 @@ interface NavProps {
   seriesCount: number;
 }
 
-const Nav: React.FC<NavProps> = ({ moviesCount, gamesCount, seriesCount }) => {
+const _Nav: React.FC<NavProps> = ({ moviesCount, gamesCount, seriesCount }) => {
   return (
     <nav>
       <div>{`Movies(${moviesCount})`}</div>
@@ -19,12 +19,12 @@ const Nav: React.FC<NavProps> = ({ moviesCount, gamesCount, seriesCount }) => {
   );
 };
 
-const Observed = observer(Nav);
+const Observed = observer(_Nav);
 
-const StoreConnected = () => {
+export const Nav = () => {
   const { moviesCount, seriesCount, gamesCount } = useStore();
 
   return <Observed {...{ moviesCount, gamesCount, seriesCount }} />;
 };
 
-export default StoreConnected;
+export default Nav;

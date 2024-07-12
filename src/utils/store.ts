@@ -7,11 +7,11 @@ import {
 } from "mobx";
 
 import { getData as fetchData } from "./mock-api";
-import type { Film, EntityType } from "./types";
+import type { Entity, EntityType } from "./types";
 
 export class Store {
   isLoading = true;
-  data: Film[] = [];
+  data: Entity[] = [];
 
   constructor() {
     makeObservable(this, {
