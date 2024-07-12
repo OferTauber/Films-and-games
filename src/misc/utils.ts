@@ -12,3 +12,11 @@ export const getCategories = (data: Entity[]): Record<string, number> => {
     return acc;
   }, accumulator);
 };
+
+export const filterDataByCategory = (
+  data: Entity[],
+  category: string | null
+): Entity[] => {
+  debugger;
+  return category ? data.filter((entity) => entity.Type === category) : data;
+};

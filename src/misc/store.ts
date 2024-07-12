@@ -8,25 +8,35 @@ import {
 
 import { getData as fetchData } from "./mock-api";
 import type { Entity } from "./types";
-import { getCategories } from "./utils";
+import { getCategories, filterDataByCategory } from "./utils";
 
 export class Store {
   isLoading = true;
   data: Entity[] = [];
+  categoryToDisplay: string | null = null;
 
   constructor() {
     makeObservable(this, {
       isLoading: observable,
       data: observable,
+      categoryToDisplay: observable,
 
       categories: computed,
+      filteredData: computed,
 
       getData: action,
+      onCategorySelection: action,
     });
   }
 
   get categories(): Record<string, number> {
     return getCategories(this.data);
+  }
+
+  get filteredData(): Entity[] {
+    // TODO filter by string
+
+    return filterDataByCategory(this.data, this.categoryToDisplay);
   }
 
   private setIsLoading = (flag: boolean): void => {
@@ -46,6 +56,11 @@ export class Store {
     } finally {
       this.setIsLoading(false);
     }
+  };
+
+  public onCategorySelection = (category: string): void => {
+    if (this.categoryToDisplay === category) this.categoryToDisplay = null;
+    else this.categoryToDisplay = category;
   };
 }
 

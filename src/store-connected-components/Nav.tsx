@@ -29,13 +29,9 @@ const _Nav: React.FC<NavProps> = ({ categories, onSelection }) => {
 const Observed = observer(_Nav);
 
 export const Nav = () => {
-  const { categories } = useStore();
+  const { categories, onCategorySelection } = useStore();
 
-  const onSelection = (str: string) => {
-    console.log(str);
-  };
-
-  return <Observed {...{ categories, onSelection }} />;
+  return <Observed {...{ categories, onSelection: onCategorySelection }} />;
 };
 
 export default Nav;

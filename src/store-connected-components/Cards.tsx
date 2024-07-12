@@ -30,9 +30,9 @@ const _Cards: React.FC<CardsProps> = ({ data }) => {
 const Observed = observer(_Cards);
 
 export const Cards = () => {
-  const { data } = useStore();
+  const { filteredData } = useStore();
 
-  return <Observed {...{ data }} />;
+  return <Observed {...{ data: filteredData }} />;
 };
 
 export default Cards;

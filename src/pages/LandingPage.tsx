@@ -6,7 +6,7 @@ export const LandingPage: React.FC = () => {
   return (
     <main style={{ display: "flex" }}>
       <Nav />
-      {/* <Cards /> */}
+      <Cards />
     </main>
   );
 };
