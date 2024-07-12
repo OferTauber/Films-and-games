@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { Entity } from "../utils/types";
+import type { Entity } from "../misc/types";
 
 interface CardProps extends Entity {
   onTitleUpdate: (newTitle: string) => void;

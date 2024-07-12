@@ -1,10 +1,8 @@
-export type EntityType = "movie" | "series" | "game";
-
 export interface Entity {
   Title: string;
   Year: string;
   imdbID: string;
-  Type: EntityType;
+  Type: string;
   Poster: string;
 }
 

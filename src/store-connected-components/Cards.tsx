@@ -2,9 +2,9 @@ import React from "react";
 
 import { observer } from "mobx-react-lite";
 
-import { useStore } from "../utils/useStore";
+import { useStore } from "../misc/useStore";
 
-import { Entity } from "../utils/types";
+import { Entity } from "../misc/types";
 
 import { Card as SingleCard } from "../ui-components/Card";
 

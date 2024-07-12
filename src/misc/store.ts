@@ -7,7 +7,8 @@ import {
 } from "mobx";
 
 import { getData as fetchData } from "./mock-api";
-import type { Entity, EntityType } from "./types";
+import type { Entity } from "./types";
+import { getCategories } from "./utils";
 
 export class Store {
   isLoading = true;
@@ -18,32 +19,19 @@ export class Store {
       isLoading: observable,
       data: observable,
 
-      moviesCount: computed,
-      gamesCount: computed,
-      seriesCount: computed,
+      categories: computed,
 
       getData: action,
     });
   }
 
+  get categories(): Record<string, number> {
+    return getCategories(this.data);
+  }
+
   private setIsLoading = (flag: boolean): void => {
     runInAction(() => (this.isLoading = flag));
   };
-
-  private count = (type: EntityType): number => {
-    return this.data.filter((entity) => entity.Type === type).length;
-  };
-
-  get moviesCount() {
-    return this.count("movie");
-  }
-
-  get gamesCount() {
-    return this.count("game");
-  }
-  get seriesCount() {
-    return this.count("series");
-  }
 
   public getData = async () => {
     this.setIsLoading(true);

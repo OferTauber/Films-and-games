@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 import { observer } from "mobx-react-lite";
-import { useStore } from "./utils/useStore";
+import { useStore } from "./misc/useStore";
 
 import { Loader } from "./ui-components/Loader";
 import LandingPage from "./pages/LandingPage";

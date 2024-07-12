@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { StoreProvider } from "./utils/useStore";
+import { StoreProvider } from "./misc/useStore";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
