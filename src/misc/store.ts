@@ -35,6 +35,7 @@ export class Store {
       setFilterBy: action,
       toggleSortDirection: action,
       toggleView: action,
+      onTitleUpdate: action,
     });
   }
 
@@ -98,6 +99,16 @@ export class Store {
     const isList = this.view === View.List;
 
     this.view = View[isList ? "Gallery" : "List"];
+  };
+
+  public onTitleUpdate = (id: string, updatedTitle: string) => {
+    if (!updatedTitle) debugger;
+
+    const itemToUpdate = this.data.find(({ imdbID }) => imdbID === id);
+
+    if (!itemToUpdate) return;
+
+    itemToUpdate.Title = updatedTitle;
   };
 }
 

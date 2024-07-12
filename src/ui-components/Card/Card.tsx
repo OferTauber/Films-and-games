@@ -1,23 +1,26 @@
 import React from "react";
 
-import type { Entity } from "../misc/types";
+import type { Entity } from "../../misc/types";
+
+import { EditableTitle } from "./sub-components/EditableTitle";
 
 interface CardProps extends Entity {
-  onTitleUpdate: (newTitle: string) => void;
+  onTitleUpdate: (updatedTitle: string) => void;
 }
 
 export const Card: React.FC<CardProps> = ({
   Title,
   Year,
   imdbID,
-  // Type,
-  // Poster
+  onTitleUpdate,
+  // TODO Type,
+  // TODO Poster
 }) => {
   const date = Year.trim();
 
   return (
     <div>
-      <h6>{Title}</h6>
+      <EditableTitle {...{ title: Title, onTitleUpdate }} />
       <div>{date}</div>
       <div>{imdbID}</div>
     </div>
