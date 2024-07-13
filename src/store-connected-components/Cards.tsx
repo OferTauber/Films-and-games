@@ -15,14 +15,18 @@ const UnconnectedCards: React.FC<CardsProps> = ({
   view,
   onTitleUpdate,
 }) => {
-  const flexOrGridClass = `cards ${view === View.List ? "d-flex flex-column" : "row"}`;
+  const flexOrGridClass = `cards  m-2 ${
+    view === View.List ? "d-flex flex-column" : "row"
+  }`;
 
   return (
     <div className={flexOrGridClass}>
       {data.map(({ imdbID, Title, Type, Year, Poster }) => {
         const curredOnTitleUpdate = (updatedValue: string) =>
           onTitleUpdate(imdbID, updatedValue);
-        const className = `${view === View.List ? "w-100 mb-3" : "col-sm-6 col-md-4 col-lg-3 mb-3"}`;
+        const className = `${
+          view === View.List ? "w-100 mb-3" : "col-sm-6 col-md-4 col-lg-3 mb-3"
+        }`;
 
         return (
           <div className={className} key={imdbID}>
