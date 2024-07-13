@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./Toggle.css";
 
 export interface ToggleProps {
@@ -29,6 +29,7 @@ export const Toggle: React.FC<ToggleProps> = ({
             className: "form-check-input cursor-pointer",
             type: "checkbox",
             checked: isChecked,
+            onChange: () => {}, // Since 'onChange' is attached to the parent div's click - no need to provide a functioning 'onChange'. This is only to handel React Warning that no onChange was provided
           }}
         />
       </div>
