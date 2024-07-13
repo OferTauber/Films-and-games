@@ -18,7 +18,7 @@ export const Toggle: React.FC<ToggleProps> = ({
   return (
     <div
       {...{
-        className: "d-flex align-items-center cursor-pointer",
+        className: "cursor-pointer d-flex align-items-center",
         onClick: onChange,
       }}
     >

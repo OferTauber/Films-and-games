@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface EditableTitleProps {
   title: string;
@@ -11,6 +11,7 @@ export const EditableTitle: React.FC<EditableTitleProps> = ({
 }) => {
   const [value, setValue] = useState(title);
   const [isEditMode, setIsEditMode] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const toggleIsEditMode = () => setIsEditMode(!isEditMode);
 
@@ -22,8 +23,13 @@ export const EditableTitle: React.FC<EditableTitleProps> = ({
     toggleIsEditMode();
   };
 
-  // TODO - focuse on element after switching to edit mode
-  if (isEditMode)
+  useEffect(() => {
+    if (isEditMode && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditMode]);
+
+  if (isEditMode) {
     return (
       <input
         {...{
@@ -31,9 +37,13 @@ export const EditableTitle: React.FC<EditableTitleProps> = ({
           value,
           onChange: (e) => setValue(e.target.value),
           onBlur,
+          ref: inputRef,
         }}
       />
     );
+  }
 
-  return <h6 {...{ onClick: toggleIsEditMode }}>{value}</h6>;
+  return (
+    <h6 {...{ onClick: toggleIsEditMode }}>{value || "Missing name 🥺"}</h6>
+  );
 };
