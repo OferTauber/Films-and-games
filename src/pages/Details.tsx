@@ -55,15 +55,13 @@ const UnconnectedDetails: React.FC<Entity> = ({
 };
 
 const StoreConnected = () => {
-  const { data } = useStore();
+  const { data, openErrorToast } = useStore();
   const { id } = useParams<{ id: string }>();
 
   const selectedEntity = data.find(({ imdbID }) => imdbID === id);
 
   if (!selectedEntity) {
-    window.alert("Somthing went werong");
-    // TODO - better errors
-
+    openErrorToast("Something went wrong");
     return <Navigate to={"/"} />;
   }
 

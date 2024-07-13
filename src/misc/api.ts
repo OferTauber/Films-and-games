@@ -1,10 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import mockData from "./mock-data.json";
 
-import type { GetDataRes,Entity } from "./types";
-
-// TODO - insted of importing a file - use file open
-// TODO - implament an api set for a fake address to update the title renaming
+import type { GetDataRes, Entity } from "./types";
 
 export const getData = async (): Promise<AxiosResponse<GetDataRes>> => {
   return new Promise((resolve) => {
@@ -21,12 +18,12 @@ export const getData = async (): Promise<AxiosResponse<GetDataRes>> => {
   });
 };
 
-
-type UpdateItemProps = Pick<Entity, "imdbID"|"Title">
-export const updateItem = async ({ imdbID, Title }: UpdateItemProps): Promise<AxiosResponse> => {
- return axios.put(`/`, {
+type UpdateItemProps = Pick<Entity, "imdbID" | "Title">;
+export const updateItem = async ({
+  imdbID,
+  Title,
+}: UpdateItemProps): Promise<AxiosResponse> => {
+  return axios.put(`/`, {
     Title,
   });
-
-  
 };

@@ -7,7 +7,7 @@ import {
 } from "mobx";
 
 import { getData as fetchData, updateItem } from "./api";
-import { Entity, SortDirection, View } from "./types";
+import { Entity, SortDirection, View, ToastProps } from "./types";
 import { getCategories, filterData } from "./utils";
 
 export class Store {
@@ -17,6 +17,7 @@ export class Store {
   filterBy = "";
   sortDirection: SortDirection = SortDirection.Asc;
   view: View = View.List;
+  toast: ToastProps | null = null;
 
   constructor() {
     makeObservable(this, {
@@ -26,6 +27,7 @@ export class Store {
       filterBy: observable,
       sortDirection: observable,
       view: observable,
+      toast: observable,
 
       categories: computed,
       filteredData: computed,
@@ -36,6 +38,7 @@ export class Store {
       toggleSortDirection: action,
       toggleView: action,
       onTitleUpdate: action,
+      openErrorToast: action,
     });
   }
 
@@ -73,7 +76,7 @@ export class Store {
 
       runInAction(() => (this.data = data.results));
     } catch (e) {
-      // TODO better interface
+      this.openErrorToast("Unable to get data");
       window.alert(e);
     } finally {
       this.setIsLoading(false);
@@ -110,8 +113,20 @@ export class Store {
     try {
       await updateItem({ imdbID: id, Title: updatedTitle });
     } catch (e) {
-      window.alert("TODO - update failed");
+      this.openErrorToast("Changes were not saved");
     }
+  };
+
+  private closeToast = (): void => {
+    runInAction(() => {
+      this.toast = null;
+    });
+  };
+
+  openErrorToast = (message: string) => {
+    this.toast = { message, variant: "warning" };
+
+    setTimeout(() => this.closeToast(), 3000);
   };
 }
 
