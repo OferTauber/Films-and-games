@@ -74,6 +74,8 @@ export class Store {
     try {
       const { data } = await fetchData();
 
+      console.log(data);
+
       runInAction(() => (this.data = data.results));
     } catch (e) {
       this.openErrorToast("Unable to get data");

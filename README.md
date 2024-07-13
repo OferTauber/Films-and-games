@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Movie Gallery Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project is a gallery of movies, TV series, and games sourced from the IMDB database. It utilizes a mock API with a subset of real data from IMDB.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Main Screen**: Users can view cards displaying movies, TV series, and games.
+- **View Switching**: Users can toggle between list view and gallery view.
+- **Editable Titles**: Clicking on a movie's title allows the user to edit it. However, a message will always pop up indicating that the save operation failed (since updating the real IMDB database is not possible).
+- **Filtering**: Users can filter results by type (movie, TV series) and by free text.
+- **Detailed View**: Clicking on a movie's poster navigates the user to a detailed page displaying additional information about the movie.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies Used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **React (TypeScript)**: The entire project is written in React using TypeScript.
+- **Bootstrap**: Styling and design are done using Bootstrap.
 
-### `npm test`
+## How to Use
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Viewing Cards**: On the main screen, you can view all available cards for movies, TV series, and games.
+2. **Switching Views**: Use the toggle to switch between list view and gallery view.
+3. **Editing Titles**: Click on a movie's title to edit it. Note that any attempt to save will fail, as indicated by a pop-up message.
+4. **Filtering**: Use the filter options to narrow down results by type or search by free text.
+5. **Detailed Information**: Click on the movie's poster to be redirected to the movie's detailed page.
 
-### `npm run build`
+## Live Demo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Check out the live version of the app [here](https://ofer-imdb-app.netlify.app).
