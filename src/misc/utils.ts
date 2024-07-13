@@ -32,3 +32,16 @@ export const filterData = ({
     else return true;
   });
 };
+
+export const formatYear = (year: string): string => {
+  const trimmedYear = year.trim();
+
+  if (/^\d{8}$/.test(trimmedYear)) {
+    const day = trimmedYear.slice(6, 8);
+    const month = trimmedYear.slice(4, 6);
+    const formattedYear = trimmedYear.slice(0, 4);
+    return `${day}/${month}/${formattedYear}`;
+  }
+
+  return year;
+};
