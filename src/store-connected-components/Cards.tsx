@@ -14,7 +14,7 @@ interface CardsProps {
 
 const UnconnectedCards: React.FC<CardsProps> = ({ data, onTitleUpdate }) => {
   return (
-    <>
+    <div className="cards">
       {data.map(({ imdbID, Title, Type, Year, Poster }) => {
         const curredOnTitleUpdate = (updatedValue: string) =>
           onTitleUpdate(imdbID, updatedValue);
@@ -33,7 +33,7 @@ const UnconnectedCards: React.FC<CardsProps> = ({ data, onTitleUpdate }) => {
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
