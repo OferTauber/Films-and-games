@@ -25,7 +25,7 @@ const UnconnectedControllers: React.FC<ControllersProps> = ({
   const sortLabel = `Sort ${sortDirection === SortDirection.Asc ? "⬆️" : "⬇️"}`;
 
   return (
-    <div className="controllers justify-content-md-center">
+    <div className="controllers justify-content-md-center m-2">
       <Input
         {...{
           value: filterBy,

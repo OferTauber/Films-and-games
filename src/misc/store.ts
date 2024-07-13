@@ -6,7 +6,7 @@ import {
   runInAction,
 } from "mobx";
 
-import { getData as fetchData } from "./mock-api";
+import { getData as fetchData, updateItem } from "./api";
 import { Entity, SortDirection, View } from "./types";
 import { getCategories, filterData } from "./utils";
 
@@ -101,14 +101,17 @@ export class Store {
     this.view = View[isList ? "Gallery" : "List"];
   };
 
-  public onTitleUpdate = (id: string, updatedTitle: string) => {
-    if (!updatedTitle) debugger;
-
+  public onTitleUpdate = async (id: string, updatedTitle: string) => {
     const itemToUpdate = this.data.find(({ imdbID }) => imdbID === id);
-
     if (!itemToUpdate) return;
 
     itemToUpdate.Title = updatedTitle;
+
+    try {
+      await updateItem({ imdbID: id, Title: updatedTitle });
+    } catch (e) {
+      window.alert("TODO - update failed");
+    }
   };
 }
 
