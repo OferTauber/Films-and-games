@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { Entity, View } from "../../misc/types";
 import { EditableTitle } from "./sub-components/EditableTitle";
 import { formatYear } from "../../misc/utils";
-import fallbackImg from "../../misc/image_not_found.jpg";
+import { Img } from "../index";
 
 interface CardProps extends Entity {
   onTitleUpdate: (updatedTitle: string) => void;
@@ -25,21 +25,24 @@ export const Card: React.FC<CardProps> = ({
     navigate(`/${imdbID}`);
   };
 
-  const [isError, setIserror] = React.useState(false);
   const isList = view === "flex";
-
-  const src = isError ? fallbackImg : Poster;
 
   return (
     <div
-      className={`card ${isList ? "d-flex flex-row align-items-center" : "d-flex flex-column align-items-center"} h-100`}
+      className={`card ${
+        isList
+          ? "d-flex flex-row list align-items-center"
+          : "d-flex flex-column gallery align-items-center"
+      } h-100`}
     >
-      <img
+      <Img
         {...{
-          src,
+          src: Poster,
           alt: Title,
-          className: `${isList ? "img-thumbnail mr-3" : "img-fluid mb-2"} cursor-pointer`,
-          onError: () => setIserror(true),
+          className: `${
+            isList ? "img-thumbnail mr-3" : "img-fluid mb-2"
+          } cursor-pointer`,
+
           onClick: handleNavigate,
           width: 150,
         }}

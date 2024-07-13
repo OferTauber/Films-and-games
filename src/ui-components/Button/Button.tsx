@@ -7,7 +7,10 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({ onClick, label }) => {
   return (
-    <button className="btn btn-primary rounded-pill px-4" onClick={onClick}>
+    <button
+      className="btn btn-primary rounded-pill px-4 text-nowrap"
+      onClick={onClick}
+    >
       {label}
     </button>
   );
