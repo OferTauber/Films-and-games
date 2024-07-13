@@ -5,6 +5,8 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../misc/useStore";
 import { SortDirection } from "../misc/types";
 
+import { Input, Button } from "../ui-components";
+
 export interface ControllersProps {
   filterBy: string;
   setFilterBy: (str: string) => void;
@@ -20,18 +22,20 @@ const UnconnectedControllers: React.FC<ControllersProps> = ({
   sortDirection,
   toggleSortDirection,
 }) => {
-  const sortLabel = sortDirection === SortDirection.Asc ? "⬆️" : "⬇️";
+  const sortLabel = `Sort ${sortDirection === SortDirection.Asc ? "⬆️" : "⬇️"}`;
 
   return (
-    <div>
-      <input
-        type="text"
-        value={filterBy}
-        onChange={(e) => setFilterBy(e.target.value)}
+    <div className="controllers justify-content-md-center">
+      <Input
+        {...{
+          value: filterBy,
+          onChange: setFilterBy,
+          placeholder: "Filter results",
+        }}
       />
-      <button onClick={() => setFilterBy("")}>Clear</button>
-      <button onClick={onRefresh}>Refresh</button>
-      <button onClick={toggleSortDirection}>Sort {sortLabel}</button>
+      <Button {...{ onClick: () => setFilterBy(""), label: "Clear" }} />
+      <Button {...{ onClick: onRefresh, label: "Refresh" }} />
+      <Button {...{ onClick: toggleSortDirection, label: sortLabel }} />
     </div>
   );
 };

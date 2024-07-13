@@ -23,7 +23,7 @@ const UnconnectedNav: React.FC<NavProps> = ({
   const keys = Object.keys(categories);
 
   return (
-    <nav className="flex-column col-3">
+    <nav className="flex-column sidebar">
       <div className="nav flex-column nav-pills ">
         {keys.map((category) => {
           const label = `${category} (${categories[category]})`;
