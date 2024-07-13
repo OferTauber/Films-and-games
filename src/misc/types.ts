@@ -20,3 +20,8 @@ export enum View {
   List = "flex",
   Gallery = "grid",
 }
+
+export interface ToastProps {
+  message?: string;
+  variant: "success" | "warning";
+}
